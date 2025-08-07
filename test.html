@@ -66,21 +66,15 @@
 
     .image-container {
       text-align: center;
-      margin-top: 30px;
-      font-size: 3rem;
+      margin-top: 50px;
+      font-size: 6rem;
+      cursor: pointer;
+      animation: floatTorta 3s ease-in-out infinite alternate;
     }
 
-    .image-container img {
-      width: 250px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px #fff;
-      animation: pulse 3s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+    @keyframes floatTorta {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
     }
 
     .confetti {
@@ -94,6 +88,29 @@
     @keyframes confettiFall {
       0% { transform: translateY(0); opacity: 1; }
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .explosion-text {
+      text-align: center;
+      font-size: 2rem;
+      color: purple;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeIn 1s ease-in forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .padlizsan {
+      font-size: 5rem;
+      animation: jump 1s ease-out forwards;
+    }
+
+    @keyframes jump {
+      0% { transform: translateY(50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
@@ -113,7 +130,6 @@
       document.body.appendChild(balloon);
     }
 
-    // Konfetti
     for (let i = 0; i < 50; i++) {
       const confetti = document.createElement('div');
       confetti.className = 'confetti';
@@ -124,11 +140,33 @@
     }
   </script>
 
-  <!-- Torta kép + torta emoji -->
-  <div class="image-container">
-    🎂
-    <img src="https://cdn.pixabay.com/photo/2016/11/29/06/15/happy-birthday-1869261_960_720.jpg" alt="Boldog születésnapot kép 🎂" />
+  <!-- Torta emoji -->
+  <div class="image-container" id="cake" onclick="explodeCake()">
     🎂
   </div>
+
+  <!-- Hangeffekt -->
+  <audio id="boom-sound">
+    <source src="https://www.soundjay.com/buttons/sounds/button-16.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Padlizsán és szöveg -->
+  <div id="explosion" style="text-align: center;"></div>
+
+  <script>
+    function explodeCake() {
+      const cake = document.getElementById("cake");
+      cake.innerHTML = "💥";
+      const sound = document.getElementById("boom-sound");
+      sound.play();
+
+      setTimeout(() => {
+        document.getElementById("explosion").innerHTML = `
+          <div class="padlizsan">🍆</div>
+          <div class="explosion-text">Boldog születésnapot, te kis padlizsán!</div>
+        `;
+      }, 800);
+    }
+  </script>
 </body>
 </html>
