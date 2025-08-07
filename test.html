@@ -69,22 +69,67 @@
       height: 100%;
       z-index: 999;
     }
+
+    .balloon-img {
+      width: 150px;
+      margin: 20px auto;
+      display: block;
+      animation: float 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-20px); }
+    }
+
+    /* Dinó animációk */
+    .dino {
+      position: fixed;
+      bottom: 0;
+      font-size: 40px;
+      animation: walk 20s linear infinite;
+      z-index: 1000;
+      white-space: nowrap;
+    }
+
+    .dino2 {
+      animation-delay: 10s;
+    }
+
+    @keyframes walk {
+      0% { left: -200px; transform: scaleX(1); }
+      50% { left: 100vw; transform: scaleX(1); }
+      51% { transform: scaleX(-1); }
+      100% { left: -200px; transform: scaleX(-1); }
+    }
   </style>
 </head>
 <body>
 
+  <!-- Lufi emoji -->
   <div class="emoji">🎈</div>
-  <div class="number">16</div>
+
+  <!-- Szám lufi kép (16-os) -->
+  <img src="https://cdn.pixabay.com/photo/2021/12/26/18/37/balloon-6896827_1280.png" alt="16 Balloon" class="balloon-img">
+
+  <!-- Torta emoji -->
   <div id="cake" class="emoji">🎂</div>
 
+  <!-- Üzenet és padlizsán -->
   <div id="message">
     <div>🍆</div>
-    <strong>Boldog szülinapot, te kis padlizsán!</strong>
+    <strong>Boldog születésnapot, te kis padlizsán!</strong>
   </div>
 
+  <!-- Konfetti -->
   <canvas id="confetti"></canvas>
 
+  <!-- Hangeffekt -->
   <audio id="pop-sound" src="https://www.soundjay.com/button/sounds/button-16.mp3" preload="auto"></audio>
+
+  <!-- Dinók -->
+  <div class="dino" style="left: -200px;">🦖🎈</div>
+  <div class="dino dino2" style="left: -200px;">🎈🦕</div>
 
   <script>
     const cake = document.getElementById('cake');
@@ -101,7 +146,7 @@
       shootConfetti();
     });
 
-    // 🎉 Konfetti kód
+    // 🎊 Konfetti effektek
     const canvas = document.getElementById('confetti');
     const ctx = canvas.getContext('2d');
     let pieces = [];
