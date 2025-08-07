@@ -67,10 +67,11 @@
     .image-container {
       text-align: center;
       margin-top: 30px;
+      font-size: 3rem;
     }
 
     .image-container img {
-      width: 200px;
+      width: 250px;
       border-radius: 20px;
       box-shadow: 0 0 20px #fff;
       animation: pulse 3s infinite;
@@ -80,10 +81,6 @@
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
-    }
-
-    audio {
-      display: none;
     }
 
     .confetti {
@@ -100,8 +97,8 @@
     }
   </style>
 </head>
-<body onclick="playSound()">
-  <h1>Boldog Születésnapot!</h1>
+<body>
+  <h1>🎉 Boldog Születésnapot! 🎂</h1>
   <div class="number16">16</div>
 
   <!-- Lufik -->
@@ -127,23 +124,11 @@
     }
   </script>
 
-  <!-- Kép -->
+  <!-- Torta kép + torta emoji -->
   <div class="image-container">
-    <img src="https://cdn.pixabay.com/photo/2016/11/29/06/15/happy-birthday-1869261_960_720.jpg" alt="Boldog születésnapot kép" />
+    🎂
+    <img src="https://cdn.pixabay.com/photo/2016/11/29/06/15/happy-birthday-1869261_960_720.jpg" alt="Boldog születésnapot kép 🎂" />
+    🎂
   </div>
-
-  <!-- Zene / hang -->
-  <audio id="birthday-audio" autoplay>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-    A böngésződ nem támogatja az audio lejátszást.
-  </audio>
-
-  <script>
-    function playSound() {
-      const audio = document.getElementById("birthday-audio");
-      audio.play();
-    }
-  </script>
 </body>
 </html>
-
